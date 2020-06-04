@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"guisquan.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="VNC Server安装笔记Centos 7.2 之 tigervnc-server 远程连接服务器实例.  安装GUI界面.  运行以下命令安装VNC Server. 1yum install tigervnc-server -y  按以下步骤修改VNC Server配置文件，设置用户名（如本示例中的root）： i. 运行命令 vim &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;vncserver">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VNC Server安装笔记">
+<meta property="og:url" content="https://guisquan.github.io/2019/02/26/VNC%20Server%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Gui Quan的博客">
+<meta property="og:description" content="VNC Server安装笔记Centos 7.2 之 tigervnc-server 远程连接服务器实例.  安装GUI界面.  运行以下命令安装VNC Server. 1yum install tigervnc-server -y  按以下步骤修改VNC Server配置文件，设置用户名（如本示例中的root）： i. 运行命令 vim &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;vncserver">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/41530/cn_zh/1513266385322/CentOS7.2_vncserver_ExecStart_PIDFile.png">
+<meta property="og:image" content="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/41530/cn_zh/1513089260096/CentOS7.2_vncserver_Start_service.png">
+<meta property="article:published_time" content="2019-02-26T03:23:08.000Z">
+<meta property="article:modified_time" content="2020-06-04T04:41:35.000Z">
+<meta property="article:author" content="Gui Quan">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="vnc server">
+<meta property="article:tag" content="tigervnc">
+<meta property="article:tag" content="vnc4server">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/41530/cn_zh/1513266385322/CentOS7.2_vncserver_ExecStart_PIDFile.png">
+
+<link rel="canonical" href="https://guisquan.github.io/2019/02/26/VNC%20Server%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>VNC Server安装笔记 | Gui Quan的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gui Quan的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://guisquan.github.io/2019/02/26/VNC%20Server%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Gui Quan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gui Quan的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VNC Server安装笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-26 11:23:08" itemprop="dateCreated datePublished" datetime="2019-02-26T11:23:08+08:00">2019-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-04 12:41:35" itemprop="dateModified" datetime="2020-06-04T12:41:35+08:00">2020-06-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="VNC-Server安装笔记"><a href="#VNC-Server安装笔记" class="headerlink" title="VNC Server安装笔记"></a>VNC Server安装笔记</h1><h2 id="Centos-7-2-之-tigervnc-server"><a href="#Centos-7-2-之-tigervnc-server" class="headerlink" title="Centos 7.2 之 tigervnc-server"></a>Centos 7.2 之 tigervnc-server</h2><ol>
+<li><p>远程连接服务器实例.</p>
+</li>
+<li><p>安装GUI界面.</p>
+</li>
+<li><p>运行以下命令安装VNC Server.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install tigervnc-server -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按以下步骤修改VNC Server配置文件，设置用户名（如本示例中的root）：</p>
+<p>i. 运行命令 <code>vim /lib/systemd/system/vncserver@.service</code></p>
+<p>ii.按<code>i</code>键进入编辑模式</p>
+<p>iii.将<code>User=&lt;User&gt;</code>、<code>ExecStart</code>和<code>PIDFile</code>的内容替换为以下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User=root</span><br><span class="line"><span class="comment"># Clean any existing files in /tmp/.X11-unix environment</span></span><br><span class="line">ExecStartPre=-/usr/bin/vncserver -<span class="built_in">kill</span> %i</span><br><span class="line">ExecStart=/sbin/runuser -l root -c <span class="string">"/usr/bin/vncserver %i"</span></span><br><span class="line">PIDFile=/root/.vnc/%H%i.pid</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/41530/cn_zh/1513266385322/CentOS7.2_vncserver_ExecStart_PIDFile.png" alt="引用阿里的图片"></p>
+</li>
+<li><p>运行以下命令，将 /lib/systemd/system/vncserver@.service 改为 /lib/systemd/system/vncserver@:1.service</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /lib/systemd/system/vncserver@.service /lib/systemd/system/vncserver@:1.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行以下命令重启systemd</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行命令 <code>vncpasswd</code>，并按界面提示设置VNC Server连接密码</p>
+</li>
+<li><p>（可选）ECS不允许开启SELinux服务和NetworkManager服务.如果开启了这些服务，运行以下命令修改配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/selinux/config    <span class="comment"># 检查SELinux服务。如果SELINUX对应的值不是disabled，必须改为disabled。</span></span><br><span class="line">chkconfig --del NetworkManager    <span class="comment"># 关闭NetworkManager服务</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行以下命令设置开机启动VNC Server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> vncserver@:1.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行以下命令启动VNC Server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vncserver@:1.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行命令 <code>ps -ef | grep vnc</code>确认服务是否已经启动。如果返回以下类似结果，说明服务已经启动</p>
+<p><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/41530/cn_zh/1513089260096/CentOS7.2_vncserver_Start_service.png" alt="引用阿里的图片"></p>
+<p>由返回结果可知，服务使用了TCP 5901端口.</p>
+</li>
+<li><p>(可选)如果您的实例上开启了防火墙，需要设置防火墙允许VNC访问</p>
+<p>以firewalld为例，您需要做如下设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-service vnc-server <span class="comment">#允许VNC访问</span></span><br><span class="line">systemctl restart firewalld.service <span class="comment"># 重启firewalld</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登录 ECS管理控制台，在实例所在安全组中 添加安全组规则，放行TCP 5901端口</p>
+</li>
+</ol>
+<h2 id="Ubuntu-14-04-之-vnc4server"><a href="#Ubuntu-14-04-之-vnc4server" class="headerlink" title="Ubuntu 14.04 之 vnc4server"></a>Ubuntu 14.04 之 vnc4server</h2><ol>
+<li><p>远程连接Linux实例</p>
+</li>
+<li><p>运行命令 <code>apt-get update</code> 更新源</p>
+</li>
+<li><p>运行以下命令安装vnc4server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install vnc4server -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行以下命令开启VNC服务并按界面提示设置连接密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vnc4server</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 注意:</span><br><span class="line">首次启动会要求设置密码，以后可以使用 vncpasswd 修改连接密码</span><br></pre></td></tr></table></figure>
+<p>如果返回结果里出现类似下图所示的<code>New &#39;:1 (root)&#39; desktop is :1 (代表主机名)</code>，</p>
+<pre><code>表示vnc4server启动成功。程序会自动在当前用户（本示例中为root）主目录下产生一个`.vnc`目录</code></pre></li>
+<li><p>运行命令 <code>ps -ef | grep vnc</code>确认服务是否已经启动</p>
+</li>
+<li><p>运行以下命令安装GNOME桌面环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal</span><br></pre></td></tr></table></figure></li>
+<li><p>可选）运行以下命令备份原有xstartup文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ~/.vnc/xstartup  ~/.vnc/xstartup.bak</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按以下步骤修改vnc4server启动文件</p>
+<ol>
+<li><p>运行以下命令打开文件<code>vim ~/.vnc/xstartup</code></p>
+</li>
+<li><p>按<code>i</code>键进入编辑模式</p>
+</li>
+<li><p>将文件内容替换为以下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># Uncomment the following two lines for normal desktop:</span></span><br><span class="line"><span class="comment"># unset SESSION_MANAGER</span></span><br><span class="line"><span class="comment"># exec /etc/X11/xinit/xinitrc</span></span><br><span class="line">[ -x /etc/vnc/xstartup ] &amp;&amp; <span class="built_in">exec</span> /etc/vnc/xstartup</span><br><span class="line">[ -r <span class="variable">$HOME</span>/.Xresources ] &amp;&amp; xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line">vncconfig -iconic &amp;</span><br><span class="line"><span class="comment">#x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &amp;</span></span><br><span class="line"><span class="comment">#x-window-manager &amp;</span></span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按<code>Esc</code>键退出编辑模式，再输入<code>:wq</code>保存并退出</p>
+</li>
+</ol>
+</li>
+<li><p>依次运行以下命令生成新的会话</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vncserver -<span class="built_in">kill</span> :1    <span class="comment">#杀掉原来的桌面进程（假设桌面号为:1）</span></span><br><span class="line">vncserver :1    <span class="comment"># 生成新的会话</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登录 ECS管理控制台，在实例所在安全组中 添加安全组规则，放行TCP 5901端口</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/centos/" rel="tag"># centos</a>
+              <a href="/tags/vnc-server/" rel="tag"># vnc server</a>
+              <a href="/tags/tigervnc/" rel="tag"># tigervnc</a>
+              <a href="/tags/vnc4server/" rel="tag"># vnc4server</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/01/08/%E5%AE%89%E8%A3%85Docker/" rel="prev" title="安装Docker">
+      <i class="fa fa-chevron-left"></i> 安装Docker
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/02/26/Docker%E5%AE%89%E8%A3%85MySQL/" rel="next" title="Docker安装MySQL">
+      Docker安装MySQL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VNC-Server安装笔记"><span class="nav-number">1.</span> <span class="nav-text">VNC Server安装笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Centos-7-2-之-tigervnc-server"><span class="nav-number">1.1.</span> <span class="nav-text">Centos 7.2 之 tigervnc-server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu-14-04-之-vnc4server"><span class="nav-number">1.2.</span> <span class="nav-text">Ubuntu 14.04 之 vnc4server</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Gui Quan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gui Quan</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

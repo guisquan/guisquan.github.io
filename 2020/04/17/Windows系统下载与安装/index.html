@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"guisquan.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Windows系统下载与安装1. 准备 空白U盘，至少4GB（Windows 10要至少8GB）  连接网络的Windows系统电脑   2. 下载系统Windows 10 、Windows 8、Windows 7  推荐使用微软提供的MediaCreationTool下载速度更快，现以Windows 10安装为例。  运行MediaCreationTool   选择为另一台电脑创建安装介质">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows系统下载与安装">
+<meta property="og:url" content="https://guisquan.github.io/2020/04/17/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Gui Quan的博客">
+<meta property="og:description" content="Windows系统下载与安装1. 准备 空白U盘，至少4GB（Windows 10要至少8GB）  连接网络的Windows系统电脑   2. 下载系统Windows 10 、Windows 8、Windows 7  推荐使用微软提供的MediaCreationTool下载速度更快，现以Windows 10安装为例。  运行MediaCreationTool   选择为另一台电脑创建安装介质">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guisquan.github.io/.io//image-20200417100534145.png">
+<meta property="og:image" content="https://guisquan.github.io/.io//image-20200417100702691.png">
+<meta property="og:image" content="https://guisquan.github.io/.io//image-20200417101041781.png">
+<meta property="og:image" content="https://guisquan.github.io/.io//image-20200417101136075.png">
+<meta property="og:image" content="https://guisquan.github.io/.io//9C6B263F-EEA5-4DB9-8139-B37C3B9C9387.png">
+<meta property="og:image" content="https://guisquan.github.io/.io//95ADBDDB-6DAC-4028-A29A-09090F7A560D.png">
+<meta property="og:image" content="https://guisquan.github.io/.io//EF66B7DB-F2D5-48D2-AE8B-457FB4923035.png">
+<meta property="og:image" content="https://guisquan.github.io/.io//970A3A62-01B4-48CC-92EF-CB60AE2C9422.png">
+<meta property="article:published_time" content="2020-04-17T02:27:10.000Z">
+<meta property="article:modified_time" content="2020-06-04T04:41:35.000Z">
+<meta property="article:author" content="Gui Quan">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Win7">
+<meta property="article:tag" content="Win8">
+<meta property="article:tag" content="Win10">
+<meta property="article:tag" content="安装系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guisquan.github.io/.io//image-20200417100534145.png">
+
+<link rel="canonical" href="https://guisquan.github.io/2020/04/17/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Windows系统下载与安装 | Gui Quan的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gui Quan的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://guisquan.github.io/2020/04/17/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Gui Quan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gui Quan的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows系统下载与安装
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 10:27:10" itemprop="dateCreated datePublished" datetime="2020-04-17T10:27:10+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-04 12:41:35" itemprop="dateModified" datetime="2020-06-04T12:41:35+08:00">2020-06-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Windows系统下载与安装"><a href="#Windows系统下载与安装" class="headerlink" title="Windows系统下载与安装"></a>Windows系统下载与安装</h1><h2 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h2><ul>
+<li><p>空白U盘，至少4GB（Windows 10要至少8GB）</p>
+</li>
+<li><p>连接网络的Windows系统电脑</p>
+</li>
+</ul>
+<h2 id="2-下载系统"><a href="#2-下载系统" class="headerlink" title="2. 下载系统"></a>2. 下载系统</h2><p><a href="https://www.microsoft.com/zh-cn/software-download/windows10/" target="_blank" rel="noopener">Windows 10</a> 、<a href="https://www.microsoft.com/zh-cn/software-download/windows8ISO/" target="_blank" rel="noopener">Windows 8</a>、<a href="https://www.microsoft.com/zh-cn/software-download/windows7/" target="_blank" rel="noopener">Windows 7</a> </p>
+<p>推荐使用微软提供的MediaCreationTool下载速度更快，现以Windows 10安装为例。</p>
+<ol>
+<li><p>运行MediaCreationTool</p>
+<p><img src="/.io//image-20200417100534145.png" alt="image-20200417100534145"></p>
+</li>
+<li><p>选择为另一台电脑创建安装介质</p>
+<p><img src="/.io//image-20200417100702691.png" alt="image-20200417100702691"></p>
+</li>
+<li><p>自行选择系统的语言、版本和体系结构</p>
+<p><img src="/.io//image-20200417101041781.png" alt="image-20200417101041781"></p>
+</li>
+<li><p>选择ISO文件</p>
+<p><img src="/.io//image-20200417101136075.png" alt="image-20200417101136075"></p>
+</li>
+<li><p>选择下载的路径之后，点击保存。稍后即可。</p>
+</li>
+</ol>
+<h2 id="3-刻录光盘或U盘"><a href="#3-刻录光盘或U盘" class="headerlink" title="3. 刻录光盘或U盘"></a>3. 刻录光盘或U盘</h2><p>下载软碟通（UltraISO）刻录软件，试用版即可。</p>
+<p>使用方法点击<a href="https://cn.ultraiso.net/jiaocheng/ke-lu-guang-pan.html" target="_blank" rel="noopener">链接</a>，看官方教程</p>
+<p>或参考如下步骤：</p>
+<ol>
+<li>插入U盘</li>
+<li>安装软碟通</li>
+<li>右键下载的操作系统文件，使用UltraISO打开</li>
+</ol>
+<p><img src="/.io//9C6B263F-EEA5-4DB9-8139-B37C3B9C9387.png" alt="9C6B263F-EEA5-4DB9-8139-B37C3B9C9387"></p>
+<ol start="4">
+<li><p>选择继续试用</p>
+<p><img src="/.io//95ADBDDB-6DAC-4028-A29A-09090F7A560D.png" alt="95ADBDDB-6DAC-4028-A29A-09090F7A560D"></p>
+</li>
+<li><p>选择工具–刻录光盘映像</p>
+<p><img src="/.io//EF66B7DB-F2D5-48D2-AE8B-457FB4923035.png" alt="EF66B7DB-F2D5-48D2-AE8B-457FB4923035"></p>
+</li>
+<li><p>选择自己的U盘或光盘</p>
+<p><img src="/.io//970A3A62-01B4-48CC-92EF-CB60AE2C9422.png" alt="970A3A62-01B4-48CC-92EF-CB60AE2C9422"></p>
+</li>
+</ol>
+<p><strong>注意：</strong>刻录后，U盘会被格式化。最后检查一下映像文件，选择的U盘是否正确后即可点击刻录。</p>
+<h2 id="4-安装系统"><a href="#4-安装系统" class="headerlink" title="4. 安装系统"></a>4. 安装系统</h2><ol>
+<li><p>将刻录好的U盘或光盘插入要安装系统的电脑。</p>
+</li>
+<li><p>根据自己电脑型号或主板的型号自行网上搜索，如何进入BIOS设置BOOT。一般为Esc、F2、F7、F12、Del键。将U盘设置为启动方式后，重启电脑。</p>
+</li>
+<li><p>重启后，电脑进入Window安装程序界面，根据安装向导执行相应的操作。</p>
+<p>注：其中如果没有密钥，可以点击我没有产品密钥，在系统安装好了在激活。</p>
+</li>
+<li><p>在，你想要执行那种类型的安装？时，选择自定义：仅安装Windows（高级）</p>
+</li>
+<li><p>在，你想将Windows安装在哪里？时，可自行选择系统盘，若硬盘未使用过，先选中未分区然后点新建，选中新建的分区后点击下一步。</p>
+</li>
+<li><p>等待系统安装完成后，在此进入BIOS设置BOOT，将刚刚装上系统的硬盘设置为第一启动项。</p>
+<p>注意：</p>
+</li>
+<li><p>Windows 7 刚装好之后没有网卡的驱动无法上网，要提前下载好网卡驱动。</p>
+<ol start="2">
+<li>Windows 7和Windows 8 安装好后，还需自行安装其他硬件驱动。</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/Win7/" rel="tag"># Win7</a>
+              <a href="/tags/Win8/" rel="tag"># Win8</a>
+              <a href="/tags/Win10/" rel="tag"># Win10</a>
+              <a href="/tags/%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F/" rel="tag"># 安装系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/09/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Windows7%E9%97%AE%E9%A2%98/" rel="prev" title="虚拟机安装Windows7问题">
+      <i class="fa fa-chevron-left"></i> 虚拟机安装Windows7问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/03/Maven%E9%85%8D%E7%BD%AE/" rel="next" title="Maven配置">
+      Maven配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows系统下载与安装"><span class="nav-number">1.</span> <span class="nav-text">Windows系统下载与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备"><span class="nav-number">1.1.</span> <span class="nav-text">1. 准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-下载系统"><span class="nav-number">1.2.</span> <span class="nav-text">2. 下载系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-刻录光盘或U盘"><span class="nav-number">1.3.</span> <span class="nav-text">3. 刻录光盘或U盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装系统"><span class="nav-number">1.4.</span> <span class="nav-text">4. 安装系统</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Gui Quan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gui Quan</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
